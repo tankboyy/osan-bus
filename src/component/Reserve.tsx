@@ -11,9 +11,10 @@ import {cn} from "@/lib/utils";
 import {CalendarIcon} from "@radix-ui/react-icons";
 import {addDays, format} from "date-fns";
 import {ko} from "date-fns/locale";
-import Stopover from "./reverse/stopover";
-import {useForm} from "react-hook-form";
+import Stopover from "@/component/estimate/stopover";
+import {Controller, useForm} from "react-hook-form";
 import {addReserve} from "@/lib/actions";
+import {useFormStatus} from "react-dom";
 
 const typeList = [
 	"야유회",
@@ -62,7 +63,7 @@ type WaypointDetailType = {
 	date: Date | undefined;
 }
 
-type FormDataType = {
+export type FormDataType = {
 	type: string;
 	name: string;
 	phone: string;
@@ -74,11 +75,13 @@ type FormDataType = {
 	wayPoints?: string[];
 	etc?: string;
 	password: string;
+	status: '대기중' | '승인' | '완료';
+	date: Date;
 }
 
 export default function BusInquiryForm() {
 
-	const {register, handleSubmit, setValue, getValues, watch, formState} = useForm<FormDataType>({
+	const {register, handleSubmit, setValue, getValues, watch, formState, setError, control} = useForm<FormDataType>({
 		defaultValues: {
 			type: '',
 			name: '',
@@ -99,62 +102,92 @@ export default function BusInquiryForm() {
 			wayPoints: [],
 			etc: '',
 			password: '',
+			status: '대기중',
+			date: new Date(),
 		},
 	});
 
 	const {errors} = formState;
 
 	const onSubmit = async (data: any) => {
-		console.log(data, 'data');
+		// if (errors) return;
+
+		await fetch('http://localhost:3000/api/reserve', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({...data, date: new Date()}),
+		})
+			.then((res) => {
+				console.log('성공');
+			})
+			.catch((err) => {
+				console.log('실패');
+			});
 	};
 
 	const startDate = watch('startDate')?.date;
 	const endDate = watch('endDate')?.date;
 
-	// const addReservef = addReserve.bind(null, getValues());
-
 
 	return (
-		<div className="max-w-3xl mx-auto bg-white p-8 shadow-lg rounded-md mt-10">
-			<button onClick={() => console.log(formState.dirtyFields)}>asd</button>
-			<h1 className="text-2xl font-bold text-center mb-4">견적문의 & 현황</h1>
+		<div className="max-w-3xl mx-auto bg-white p-8 shadow-lg rounded-md">
+			{/*<button onClick={async () => {*/}
+			{/*	const data = await fetch("/api/map?keyword=오산시 궐동 궐리사");*/}
+			{/*	console.log(await data.json());*/}
+			{/*}}>asd*/}
+			{/*</button>*/}
+			<h1 className="text-2xl font-bold text-center mb-4">견적문의</h1>
 			<p className="text-sm text-center text-gray-600 mb-8">
-				저희 테마고속투어의 견적문의와 현황을 안내해드립니다.
+				저희 오산관광의 견적문의 페이지 입니다.
 			</p>
 
 			<form className="space-y-6 text-center" onSubmit={handleSubmit(onSubmit)} action={addReserve}>
 				{/* 구분 */}
 				<div className="flex items-center">
-					<label className="block w-20 text-sm font-medium text-gray-700 mb-1">구분 *</label>
-					<Select onValueChange={(value) => setValue('type', value)}>
-						<SelectTrigger className="w-[160px]">
-							<SelectValue placeholder="구분을 선택해주세요."  {...register("type")}/>
-						</SelectTrigger>
-						<SelectContent>
-							<SelectGroup>
-								{typeList.map((type, i) => (
-									<SelectItem key={i} value={`type${i + 1}`} className="">
-										{type}
-									</SelectItem>
-								))}
-							</SelectGroup>
-						</SelectContent>
-					</Select>
+					<Controller rules={{
+						required: true,
+					}} render={({field}) => (
+						<div className="flex flex-col">
+							<div className="flex items-center">
+								<label className="block w-20 text-sm font-medium text-gray-700 mb-1">구분 *</label>
+								<Select onValueChange={field.onChange}>
+									<SelectTrigger className="w-[160px]">
+										<SelectValue placeholder="구분을 선택해주세요."/>
+									</SelectTrigger>
+									<SelectContent>
+										<SelectGroup>
+											{typeList.map((type, i) => (
+												<SelectItem key={i} value={`${type}`} className="">
+													{type}
+												</SelectItem>
+											))}
+										</SelectGroup>
+									</SelectContent>
+								</Select>
+							</div>
 
+						</div>)} name="type" defaultValue="" control={control}/>
+					{errors.type && <p className="text-red-500 text-left text-sm pl-6 pt-1">구분을 선택해 주세요.</p>}
 				</div>
+
 
 				{/* 성명 */}
 				<div className="flex items-center">
-					<label className="block w-20 text-sm font-medium text-gray-700 mb-1">성명 *</label>
+					<label className="block w-20 text-sm font-medium text-gray-700 mb-1"> 성명 *</label>
 					<Input className="w-[280px] border-2 p-1" placeholder="성명을 입력하세요" {...register("name", {
 						required: true,
 						minLength: 2,
 						// 한글과 영어만 가능하게
 						pattern: /^[가-힣a-zA-Z]+$/,
 					})}/>
+					{errors.name && <p className="text-red-500 text-left text-sm pl-6 pt-1">성명을 확인해 주세요.</p>}
+
 				</div>
 
-				{/* 연락처 */}
+				{/* 연락처 */
+				}
 				<div className="flex items-center">
 					<label className="block w-20 text-sm font-medium text-gray-700 mb-1">연락처 *</label>
 					<Input className="w-[280px] border-2 p-1" placeholder="연락처를 입력하세요" {...register("phone", {
@@ -168,47 +201,57 @@ export default function BusInquiryForm() {
 							console.log('onBlur', e.target.value);
 						}
 					})}/>
+					{errors.phone && <p className="text-red-500 text-left text-sm pl-6 pt-1">연락처를 확인해 주세요.</p>}
 				</div>
 
 				{/* 차량 */}
-				<div className="flex items-center">
-
-
-					<label className="block w-20 text-sm font-medium text-gray-700 mb-1">차량 *</label>
-					<Select onValueChange={value => setValue('busType', value)}>
-						<SelectTrigger className="w-[160px] border-2 p-1">
-							<SelectValue placeholder="차량을 선택해주세요."/>
-						</SelectTrigger>
-						<SelectContent className="bg-gray-100 w-[160px] rounded-2xl text-center">
-							<SelectGroup>
-								{busList.map((bus, i) => (
-									<SelectItem key={i} value={`bus${i + 1}`} className="border-b-2 last:border-0">
-										{bus}
-									</SelectItem>
-								))}
-							</SelectGroup>
-						</SelectContent>
-					</Select>
-				</div>
+				<Controller
+					rules={{
+						required: true,
+					}}
+					render={({field}) => (
+						<div className="flex items-center">
+							<label className="block w-20 text-sm font-medium text-gray-700 mb-1">차량 *</label>
+							<Select onValueChange={field.onChange}>
+								<SelectTrigger className="w-[160px]">
+									<SelectValue placeholder="차량을 선택해주세요."/>
+								</SelectTrigger>
+								<SelectContent className=" w-[160px]">
+									<SelectGroup>
+										{busList.map((bus, i) => (
+											<SelectItem key={i} value={`bus${i + 1}`}>
+												{bus}
+											</SelectItem>
+										))}
+									</SelectGroup>
+								</SelectContent>
+							</Select>
+							{errors.busType && <p className="text-red-500 text-left text-sm pl-6 pt-1">차량 종류를 선택해 주세요.</p>}
+						</div>
+					)} name="busType" defaultValue="" control={control}/>
 
 				{/* 차량대수 및 인원 */}
-				<div className="grid grid-cols-2 gap-4">
+				<div className="flex items-center">
 					<div className="flex items-center">
-						<label className="block w-20 text-sm font-medium text-gray-700 mb-1">차량대수 *</label>
-						<Input className="w-[280px] border-2 p-1" placeholder="차량 대수를 입력하세요" {...register('busCount')}/>
-					</div>
-					<div className="flex items-center">
-
-
-						<label className="block w-20 text-sm font-medium text-gray-700 mb-1">인원 *</label>
-						<Input className="w-[280px] border-2 p-1" placeholder="인원을 입력하세요" {...register('person')}/>
+						<label className="block w-20 text-sm font-medium text-gray-700 mb-1"> 차량대수 *</label>
+						<Input className="w-[280px] border-2 p-1" placeholder="차량대수를 입력하세요(숫자만)" {...register('busCount', {
+							required: true,
+							max: 50,
+							pattern: /^[0-9]+$/,
+						})}/>
+						{errors.busCount && <p className="text-red-500 text-left text-sm pl-6 pt-1">차량 대수를 확인해 주세요.</p>}
 					</div>
 				</div>
-
-				{/* 출발지 및 목적지 */}
-				{/*<div className="grid grid-cols-2 gap-4">*/}
 				<div className="flex items-center">
+					<label className="block w-20 text-sm font-medium text-gray-700 mb-1">인원 *</label>
+					<Input className="w-[280px] border-2 p-1" placeholder="인원을 입력하세요(숫자만)" {...register('person', {
+						required: true,
+						pattern: /^[0-9]+$/,
+					})}/>
+					{errors.person && <p className="text-red-500 text-left text-sm pl-6 pt-1">인원을 확인해 주세요.</p>}
+				</div>
 
+				<div className="flex items-center">
 					<label className="block w-20 text-sm font-medium text-gray-700 mb-1">출발지 *</label>
 					<Select onValueChange={value => setValue('startDate', {
 						...getValues('startDate'),
@@ -220,7 +263,7 @@ export default function BusInquiryForm() {
 						<SelectContent className="bg-gray-100 w-[100px] rounded-2xl text-center">
 							<SelectGroup>
 								{mapList.map((type, i) => (
-									<SelectItem key={i} value={`type${i + 1}`} className="border-b-2 hover:bg-gray-300 last:border-0">
+									<SelectItem key={i} value={`${type}`} className="border-b-2 hover:bg-gray-300 last:border-0">
 										{type}
 									</SelectItem>
 								))}
@@ -266,14 +309,17 @@ export default function BusInquiryForm() {
 				</div>
 				<div className="flex items-center">
 					<label className="block w-20 text-sm font-medium text-gray-700 mb-1">목적지 *</label>
-					<Select>
+					<Select onValueChange={value => setValue('endDate', {
+						...getValues('endDate'),
+						type: value,
+					})}>
 						<SelectTrigger className="w-[100px] border-2 p-1 mr-2">
 							<SelectValue placeholder="선택해주세요"/>
 						</SelectTrigger>
 						<SelectContent className="bg-gray-100 w-[100px] rounded-2xl text-center">
 							<SelectGroup>
 								{mapList.map((type, i) => (
-									<SelectItem key={i} value={`type${i + 1}`} className="border-b-2 hover:bg-gray-300 last:border-0">
+									<SelectItem key={i} value={`${type}`} className="border-b-2 hover:bg-gray-300 last:border-0">
 										{type}
 									</SelectItem>
 								))}

@@ -40,7 +40,7 @@ export default function Header() {
 				</DropdownMenu>
 				<DropdownMenu>
 					<DropdownMenuTrigger
-						className="font-semibold text-gray-800 hover:text-red-500 cursor-pointer">차량소개</DropdownMenuTrigger>
+						className="font-semibold text-gray-800 hover:text-yellow-500 cursor-pointer">차량소개</DropdownMenuTrigger>
 					<DropdownMenuContent className="bg-amber-200">
 						<DropdownMenuItem>
 							<Link href="/bus/1">우등 / 38인승</Link>
@@ -51,14 +51,19 @@ export default function Header() {
 					</DropdownMenuContent>
 				</DropdownMenu>
 				<Link href="/policy">
-          <span className="font-semibold text-gray-800 hover:text-gray-500 cursor-pointer">
-            운송약관
-          </span>
+					<span className="font-semibold text-gray-800 hover:text-gray-500 cursor-pointer">
+						운송약관
+					</span>
 				</Link>
 				<Link href="/contact">
-          <span className="font-semibold text-gray-800 hover:text-blue-500 cursor-pointer">
-            문의사항
-          </span>
+					<span className="font-semibold text-gray-800 hover:text-blue-500 cursor-pointer">
+						문의사항
+					</span>
+				</Link>
+				<Link href="/estimate">
+					<span className="font-semibold text-gray-800 hover:text-green-500 cursor-pointer">
+						견적문의
+					</span>
 				</Link>
 			</nav>
 		</header>

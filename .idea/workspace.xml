@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09b9b67e-a969-473d-a90f-4dccc8afba16" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="09b9b67e-a969-473d-a90f-4dccc8afba16" name="변경" comment=":package: 리액트 버전 18 &gt; 18.3.1로 변경">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components.json" beforeDir="false" afterPath="$PROJECT_DIR$/components.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/reserve/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/estimate/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Footer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Reserve.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Reserve.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/reverse/stopover.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/estimate/stopover.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +57,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "ToolWindow.documentation.v2.ShowToolbar": "false",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/dol/prj/osan-bus/src/image",
     "node.js.detected.package.eslint": "true",
@@ -65,7 +68,7 @@
     "node.js.selected.package.stylelint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "actions.on.save",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable",
     "ts.external.directory.path": "/Users/dol/prj/osan-bus/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -85,7 +88,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
       </set>
     </attachedChunks>
   </component>
@@ -99,11 +102,33 @@
       <updated>1729755964663</updated>
       <workItem from="1729755965789" duration="38543000" />
       <workItem from="1730184633264" duration="3159000" />
-      <workItem from="1730187801168" duration="11317000" />
+      <workItem from="1730187801168" duration="28795000" />
+      <workItem from="1730537976025" duration="8223000" />
+      <workItem from="1731141076968" duration="15079000" />
+      <workItem from="1731940819451" duration="931000" />
+      <workItem from="1731978305548" duration="2262000" />
+      <workItem from="1731983901362" duration="12026000" />
+      <workItem from="1732419795884" duration="1814000" />
+      <workItem from="1732674407714" duration="544000" />
+      <workItem from="1732674982602" duration="658000" />
+      <workItem from="1733473828437" duration="12999000" />
     </task>
+    <task id="LOCAL-00001" summary=":package: 리액트 버전 18 &gt; 18.3.1로 변경">
+      <option name="closed" value="true" />
+      <created>1730358776458</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730358776458</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=":package: 리액트 버전 18 &gt; 18.3.1로 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value=":package: 리액트 버전 18 &gt; 18.3.1로 변경" />
   </component>
 </project>
