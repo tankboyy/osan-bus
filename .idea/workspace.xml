@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09b9b67e-a969-473d-a90f-4dccc8afba16" name="변경" comment=":package: 리액트 버전 18 &gt; 18.3.1로 변경">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/reserve/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/estimate/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Reserve.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Reserve.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/reverse/stopover.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/estimate/stopover.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="09b9b67e-a969-473d-a90f-4dccc8afba16" name="변경" comment=":package: 리액트 버전 18 &gt; 18.3.1로 변경" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +99,7 @@
       <workItem from="1732419795884" duration="1814000" />
       <workItem from="1732674407714" duration="544000" />
       <workItem from="1732674982602" duration="658000" />
-      <workItem from="1733473828437" duration="12999000" />
+      <workItem from="1733473828437" duration="13408000" />
     </task>
     <task id="LOCAL-00001" summary=":package: 리액트 버전 18 &gt; 18.3.1로 변경">
       <option name="closed" value="true" />
